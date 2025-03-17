@@ -3,7 +3,7 @@
 # TC - O(N), SC - O(N)
 def twoSum(nums, target):
     # Create a dictionary to store the complement of each number and its index
-    num_hash = {}
+    num_dict = {}
 
     # Iterate through the array
     for i, num in enumerate(nums):
@@ -11,12 +11,12 @@ def twoSum(nums, target):
         complement = target - num
 
         # Check if the complement exists in our dictionary
-        if complement in num_hash:
+        if complement in num_dict:
             # If found, return both indices
-            return [num_hash[complement], i]
+            return [num_dict[complement], i]
 
         # Otherwise, add the current number and its index to the dictionary
-        num_hash[num] = i
+        num_dict[num] = i
 
     return []
 
