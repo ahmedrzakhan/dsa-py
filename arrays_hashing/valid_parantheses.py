@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/valid-parentheses/
+
 def isValid(s: str) -> bool:
     # Create a stack to store opening brackets
     stack = []
