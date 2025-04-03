@@ -1,3 +1,5 @@
+# https://leetcode.com/problems/generate-parentheses/description/
+
 # TC - O(4^N/sqrt(n)), SC - O(N)
 def generateParenthesis(n):
     def backtrack(open_count, close_count, curr, result):
