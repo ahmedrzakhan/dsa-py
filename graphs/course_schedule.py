@@ -1,6 +1,6 @@
 # https://leetcode.com/problems/course-schedule
 
-# TC - O(N+P), SC - O(N+P)
+# TC - O(V+E), SC - O(V+E)
 def canFinish(numCourses, prerequisites):
     # Create adjacency list for the graph
     adjList = [[] for _ in range(numCourses)]
