@@ -11,8 +11,8 @@ def groupAnagrams(strs):
         char_count = [0] * 26
 
         # Count frequency of each character
-        for char in s:
-            char_count[ord(char) - ord('a')] += 1
+        for c in s:
+            char_count[ord(c) - ord('a')] += 1
 
         # Convert list to tuple to use as dictionary key
         key = tuple(char_count)
