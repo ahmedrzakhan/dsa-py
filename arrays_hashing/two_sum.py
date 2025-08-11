@@ -3,20 +3,20 @@
 # TC - O(N), SC - O(N)
 def twoSum(nums, target):
     # Create a dictionary to store the complement of each number and its index
-    num_dict = {}
+    prev_dict = {}
 
     # Iterate through the array
     for i, num in enumerate(nums):
         # Calculate the complement needed to reach the target
-        complement = target - num
+        diff = target - num
 
         # Check if the complement exists in our dictionary
-        if complement in num_dict:
+        if diff in prev_dict:
             # If found, return both indices
-            return [num_dict[complement], i]
+            return [prev_dict[diff], i]
 
         # Otherwise, add the current number and its index to the dictionary
-        num_dict[num] = i
+        prev_dict[num] = i
 
     return []
 
