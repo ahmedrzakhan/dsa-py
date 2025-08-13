@@ -5,9 +5,9 @@ def evalRPN(tokens):
     stack = []
 
     for token in tokens:
-        if token in {'+', '-', '*', '/'}:
+        if token in '+-*/':
             # Pop the two operands (second operand first due to stack order)
-            b = stack.pop()
+            b = stack.pop() # NOTE: first pop b then a
             a = stack.pop()
 
             # Perform the operation
