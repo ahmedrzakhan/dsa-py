@@ -1,7 +1,7 @@
-def maxArea(height):
+def maxArea(A):
     # Initialize two pointers: L at start, R at end
     L = 0
-    R = len(height) - 1
+    R = len(A) - 1
     max_water = 0
 
     # Continue until pointers meet
@@ -9,14 +9,14 @@ def maxArea(height):
         # Calculate current water area
         # Width is distance between pointers (R - L)
         # Height is minimum of the two lines
-        curr_water = min(height[L], height[R]) * (R - L)
+        curr_water = min(A[L], A[R]) * (R - L)
 
         # Update max_water if current is larger
         max_water = max(max_water, curr_water)
 
         # Move the pointer pointing to the shorter line
         # Because moving the taller line inward won't increase area
-        if height[L] < height[R]:
+        if A[L] < A[R]:
             L += 1
         else:
             R -= 1
