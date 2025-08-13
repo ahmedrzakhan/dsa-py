@@ -1,16 +1,16 @@
 # https://leetcode.com/problems/3sum/description/
 
 # TC -O(N^2), SC - O(1)
-def threeSum(nums):
+def threeSum(A):
     # Sort the array first
-    nums.sort()
+    A.sort()
     result = []
-    N = len(nums)
+    N = len(A)
 
     # Iterate through array, fixing the first number
     for i in range(N-2):
         # Skip duplicates for i
-        if i > 0 and nums[i] == nums[i-1]:
+        if i > 0 and A[i] == A[i-1]:
             continue
 
         # Use two pointers for the remaining two numbers
@@ -18,17 +18,17 @@ def threeSum(nums):
         R = N - 1
 
         while L < R:
-            curr_sum = nums[i] + nums[L] + nums[R]
+            curr_sum = A[i] + A[L] + A[R]
 
             if curr_sum == 0:
                 # Found a valid triplet
-                result.append([nums[i], nums[L], nums[R]])
+                result.append([A[i], A[L], A[R]])
 
                 # Skip duplicates for Left
-                while L < R and nums[L] == nums[L+1]:
+                while L < R and A[L] == A[L+1]:
                     L += 1
                 # Skip duplicates for Right
-                while L < R and nums[R] == nums[R-1]:
+                while L < R and A[R] == A[R-1]:
                     R -= 1
 
                 L += 1
@@ -43,8 +43,8 @@ def threeSum(nums):
 
 # Test cases
 test_cases = [
-    # [-1,0,1,2,-1,-4],
-    # [0,1,1],
+    [-1,0,1,2,-1,-4],
+    [0,1,1],
     [0,0,0]
 ]
 
