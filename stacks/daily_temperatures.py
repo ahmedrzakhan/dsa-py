@@ -1,23 +1,23 @@
 # https://leetcode.com/problems/daily-temperatures/description/
 
 # TC - O(N), SC - O(N)
-def dailyTemperatures(temperatures):
+def dailyTemperatures(temps):
   # Initialize result array with zeros, same length as input temperatures
-    res = [0] * len(temperatures)
+    res = [0] * len(temps)
 
     # Initialize empty stack to store pairs of [temperature, index]
     stack = []  # pair: [temp, index]
 
     # Iterate through temperatures array with index and value using enumerate
-    for i, t in enumerate(temperatures):
+    for i, t in enumerate(temps):
         # While stack is not empty AND current temperature is warmer than
         # the temperature at the top of stack
         while stack and t > stack[-1][0]:
             # Pop the last pair from stack and unpack into temperature and index
-            stackT, stackIdx = stack.pop()
+            _, idx = stack.pop()
             # Calculate days difference between current index and popped index
             # Store result in the corresponding position in res array
-            res[stackIdx] = i - stackIdx
+            res[idx] = i - idx
         # Add current temperature and index as a tuple to the stack
         stack.append((t, i))
 
