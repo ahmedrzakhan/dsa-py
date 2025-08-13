@@ -1,6 +1,6 @@
 # https://leetcode.com/problems/min-stack/description/
 
-# TC - O(N), SC - O(1) for all operations
+# TC - O(1), SC - O(N) for all operations
 class MinStack:
     def __init__(self):
         # Initialize two stacks: one for values and one for tracking minimums
