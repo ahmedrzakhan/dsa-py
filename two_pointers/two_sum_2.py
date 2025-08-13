@@ -1,11 +1,12 @@
 # https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
 
-def twoSum(numbers: list[int], target: int) -> list[int]:
+# TC - O(N), SC - O(1)
+def twoSum(A: list[int], target: int) -> list[int]:
     L = 0
-    R = len(numbers) - 1
+    R = len(A) - 1
 
     while L < R:
-        curr_sum = numbers[L] + numbers[R]
+        curr_sum = A[L] + A[R]
         if curr_sum == target:
             # Adding 1 to convert from 0-indexed to 1-indexed
             return [L + 1, R + 1]
