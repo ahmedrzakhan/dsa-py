@@ -1,19 +1,19 @@
 # https://leetcode.com/problems/binary-search/description/
 
-# TC - O(N), SC -O(1)
-def search(nums, target):
+# TC - O(LogN), SC -O(1)
+def search(A, target):
     L = 0
-    R = len(nums) - 1
+    R = len(A) - 1
 
     while L <= R:
         mid = (L + R) // 2
 
         # If target is found at mid, return the index
-        if nums[mid] == target:
+        if A[mid] == target:
             return mid
 
         # If target is greater, ignore left half
-        elif nums[mid] < target:
+        elif A[mid] < target:
             L = mid + 1
 
         # If target is smaller, ignore right half
