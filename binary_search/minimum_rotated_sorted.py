@@ -1,18 +1,18 @@
 # https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/description/
 
-# TC - O(N), SC - O(1)
-def findMin(nums):
+# TC - O(LogN), SC - O(1)
+def findMin(A):
     # If array has only one element, return it
-    if len(nums) == 1:
-        return nums[0]
+    if len(A) == 1:
+        return A[0]
 
     L = 0
-    R = len(nums) - 1
+    R = len(A) - 1
 
     # If array is not rotated (last element >= first element)
     # then first element is minimum
-    if nums[R] > nums[0]:
-        return nums[0]
+    if A[R] > A[0]:
+        return A[0]
 
     # Binary search
     while L <= R:
@@ -20,17 +20,17 @@ def findMin(nums):
 
         # Check if mid+1 is the minimum element
         # by comparing with mid
-        if nums[mid] > nums[mid + 1]:
-            return nums[mid + 1]
+        if A[mid] > A[mid + 1]:
+            return A[mid + 1]
 
         # Check if mid is the minimum element
         # by comparing with mid-1
-        if nums[mid - 1] > nums[mid]:
-            return nums[mid]
+        if A[mid - 1] > A[mid]:
+            return A[mid]
 
         # If mid element is greater than first element,
         # minimum lies in right half
-        if nums[mid] > nums[0]:
+        if A[mid] > A[0]:
             L = mid + 1
         # If mid element is less than first element,
         # minimum lies in left half
