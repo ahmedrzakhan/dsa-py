@@ -31,8 +31,8 @@ def linkedListToArray(head):
 # TC - O(Max(N, M)), SC - O(Max(N, M))
 def addTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
     # Create a dummy head node to simplify the code
-    dummy_head = ListNode(0)
-    curr = dummy_head
+    dummy = ListNode(0)
+    curr = dummy
 
     # Initialize carry to 0
     carry = 0
@@ -59,7 +59,7 @@ def addTwoNumbers(l1: ListNode, l2: ListNode) -> ListNode:
             l2 = l2.next
 
     # Return the result linked list (without the dummy head)
-    return dummy_head.next
+    return dummy.next
 
 # Test cases
 def runTestCase(l1_arr, l2_arr):
