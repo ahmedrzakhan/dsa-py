@@ -33,9 +33,13 @@ def copyRandomList(head):
     new_curr = new_head
 
     while curr:
-        curr.next = curr.next.next if curr.next else None
+        if curr.next:
+            curr.next = curr.next.next
+        else:
+            curr.next = None
         if new_curr.next:
             new_curr.next = new_curr.next.next
+            # NOTE: Why C'.next is already None:
         curr = curr.next
         new_curr = new_curr.next
 
