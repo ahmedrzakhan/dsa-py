@@ -68,6 +68,6 @@ wordDictionary.addWord("dad")
 wordDictionary.addWord("mad")
 
 # Test cases
-test_cases = [  "b.."]
+test_cases = ["pad", "bad", ".ad", "b.."]
 for test in test_cases:
     print(f"Search '{test}': {wordDictionary.search(test)}")
