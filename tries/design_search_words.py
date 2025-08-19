@@ -63,11 +63,12 @@ class WordDictionary:
 
 # Example usage
 wordDictionary = WordDictionary()
+wordDictionary.addWord("bac")
 wordDictionary.addWord("bad")
 wordDictionary.addWord("dad")
 wordDictionary.addWord("mad")
 
 # Test cases
-test_cases = ["pad", "bad", ".ad", "b..", "b.d"]
+test_cases = ["b.d"]
 for test in test_cases:
     print(f"Search '{test}': {wordDictionary.search(test)}")
