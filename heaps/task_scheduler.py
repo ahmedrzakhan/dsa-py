@@ -36,18 +36,22 @@ def leastInterval(tasks, n):
 
     return time  # Return total time required to complete all tasks
 
-# Example usage
-# Example 1: Tasks need to be scheduled with a cooldown of 2
-tasks1 = ["A", "A", "A", "B", "B", "B"]
-n1 = 2
+tasks1 = ["A", "A", "A", "B", "B", "C"]
+n1 = 1
 print(leastInterval(tasks1, n1))  # Output: 8 (e.g., A->B->idle->A->B->idle->A->B)
 
+# Example usage
+# Example 1: Tasks need to be scheduled with a cooldown of 2
+tasks2 = ["A", "A", "A", "B", "B", "B"]
+n2 = 2
+print(leastInterval(tasks2, n2))  # Output: 8 (e.g., A->B->idle->A->B->idle->A->B)
+
 # Example 2: Tasks with a shorter cooldown of 1
-tasks2 = ["A", "C", "A", "B", "D", "B"]
-n2 = 1
-print(leastInterval(tasks2, n2))  # Output: 6 (e.g., A->C->B->A->D->B)
+tasks3 = ["A", "C", "A", "B", "D", "B"]
+n3 = 1
+print(leastInterval(tasks3, n3))  # Output: 6 (e.g., A->C->B->A->D->B)
 
 # Example 3: Same tasks as Example 1 but with a longer cooldown of 3
-tasks3 = ["A", "A", "A", "B", "B", "B"]
-n3 = 3
-print(leastInterval(tasks3, n3))  # Output: 10 (e.g., A->B->idle->idle->A->B->idle->idle->A->B)
+tasks4 = ["A", "A", "A", "B", "B", "B"]
+n4 = 3
+print(leastInterval(tasks4, n4))  # Output: 10 (e.g., A->B->idle->idle->A->B->idle->idle->A->B)
