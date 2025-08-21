@@ -3,22 +3,25 @@
 import heapq
 
 class KthLargest:
+    # O(NLogN), where N is len of Nums
     def __init__(self, k: int, nums: list[int]):
         # Initialize the min-heap and k value
         self.k = k
-        self.min_heap = []
+        self.min_heap = nums
 
         # Add initial elements to the heap
-        for num in nums:
-            self.add(num)
+        heapq.heapify(self.min_heap) # O(N)
+        while len(self.min_heap) > k: # O(N-K)LogN
+            heapq.heappop(self.min_heap)
 
+    # O(LogK)
     def add(self, val: int) -> int:
         # Add the new value to the heap
-        heapq.heappush(self.min_heap, val)
+        heapq.heappush(self.min_heap, val) # O(LogK)
 
         # If heap size exceeds k, remove the smallest element
         if len(self.min_heap) > self.k:
-            heapq.heappop(self.min_heap)
+            heapq.heappop(self.min_heap) # O(LogK)
 
         # Return the kth largest element (root of min-heap)
         return self.min_heap[0]
