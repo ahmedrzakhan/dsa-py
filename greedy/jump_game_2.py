@@ -2,29 +2,17 @@
 
 # TC - O(N), SC - O(1)
 def jump(A):
-    N = len(A)
-    if N <= 1:
-        return 0
+    res = 0
+    L, R = 0, 0
 
-    jumps = 0
-    current_end = 0  # Current jump range end
-    farthest = 0     # Farthest reachable index
-
-    # Iterate until we reach or pass the last index
-    for i in range(N - 1):
-        # Update farthest reachable index
-        farthest = max(farthest, i + A[i])
-
-        # If we reach the current jump range end
-        if i == current_end:
-            jumps += 1
-            current_end = farthest
-
-            # Early termination if we can reach the end
-            if current_end >= N - 1:
-                break
-
-    return jumps
+    while R < len(A) - 1:
+        farthest = 0
+        for i in range(L, R + 1):
+            farthest = max(farthest, i + A[i])
+        L = R + 1
+        R = farthest
+        res += 1
+    return res
 
 # Test cases
 # Test case 1
