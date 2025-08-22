@@ -14,26 +14,26 @@ def combinationSum(A, target):
     Returns:
         List of all unique combinations that sum to target
     """
-    def backtrack(start, curSet, current_sum):
+    def backtrack(start, curr_set, curr_sum):
         # Base case: if we've reached the target sum
-        if current_sum == target:
-            result.append(curSet[:])  # Add a copy of the current combination
+        if curr_sum == target:
+            result.append(curr_set[:])  # Add a copy of the current combination
             return
 
         # If current sum exceeds target, stop exploring this path
-        if current_sum > target:
+        if curr_sum > target:
             return
 
         # Try each candidate starting from 'start' index
         for i in range(start, len(A)):
             # Include the current candidate
-            curSet.append(A[i])
+            curr_set.append(A[i])
 
             # Recursively explore with the same starting index (allowing reuse)
-            backtrack(i, curSet, current_sum + A[i])
+            backtrack(i, curr_set, curr_sum + A[i])
 
             # Backtrack: remove the last added candidate
-            curSet.pop()
+            curr_set.pop()
 
     result = []
     backtrack(0, [], 0)
@@ -72,15 +72,15 @@ def test_combination_sum():
     print(f"Expected: []")
 
 
-    test_combination_sum()
+test_combination_sum()
 
 # You can also test with your own input
-print("\n" + "="*50 + "\n")
-print("Test with your own input:")
+# print("\n" + "="*50 + "\n")
+# print("Test with your own input:")
 
-# Example custom test
-custom_candidates = [2, 3, 4, 5]
-custom_target = 10
-custom_result = combinationSum(custom_candidates, custom_target)
-print(f"Input: candidates = {custom_candidates}, target = {custom_target}")
-print(f"Output: {custom_result}")
+# # Example custom test
+# custom_candidates = [2, 3, 4, 5]
+# custom_target = 10
+# custom_result = combinationSum(custom_candidates, custom_target)
+# print(f"Input: candidates = {custom_candidates}, target = {custom_target}")
+# print(f"Output: {custom_result}")
