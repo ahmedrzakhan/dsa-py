@@ -1,6 +1,8 @@
 # https://leetcode.com/problems/subsets/description/
 
-# TC - O(2^N), SC - O(N)
+# TC - O(N*2^N), SC - O(N)
+# The algorithm generates 2^N subsets.
+# Each subset requires O(N) time to copy in the worst case.
 def subsets(A):
     result = []
 
