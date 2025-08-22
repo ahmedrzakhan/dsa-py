@@ -14,8 +14,6 @@ def canJump(A):
         if max_reach >= len(A) - 1:
             return True
 
-    return True
-
 # Test cases
 # Example 1
 nums1 = [2, 3, 1, 1, 4]
