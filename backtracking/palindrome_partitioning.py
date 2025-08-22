@@ -13,31 +13,27 @@ def partition(s):
         List[List[str]]: All possible palindrome partitions
     """
     def is_palindrome(string):
-        """Check if a string is a palindrome"""
         return string == string[::-1]
 
-    def backtrack(start, path):
-        """
-        Backtracking function to find all palindrome partitions
-
-        Args:
-            start (int): Starting index for current substring
-            path (List[str]): Current partition being built
-        """
+    def backtrack(start, curr_set):
+        # Backtracking function to find all palindrome partitions
+        # Args:
+        #     start (int): Starting index for current substring
+        #     curr_set (List[str]): Current partition being built
         # Base case: if we've reached the end of string, add current partition to result
         if start == len(s):
-            result.append(path[:])  # Make a copy of current partition
+            result.append(curr_set[:])  # Make a copy of current partition
             return
 
         # Try all possible substrings starting from 'start'
         for end in range(start + 1, len(s) + 1):
-            substring = s[start:end]
+            sub_str = s[start:end]
 
-            # If current substring is palindrome, add it to partition and recurse
-            if is_palindrome(substring):
-                path.append(substring)
-                backtrack(end, path)
-                path.pop()  # Backtrack
+            # If current substr is palindrome, add it to partition and recurse
+            if is_palindrome(sub_str):
+                curr_set.append(sub_str)
+                backtrack(end, curr_set)
+                curr_set.pop()  # Backtrack
 
     result = []
     backtrack(0, [])
