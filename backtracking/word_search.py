@@ -1,21 +1,17 @@
 # https://leetcode.com/problems/word-search/
 
-# TC - O(M*4^N), SC - O(N)
-def word_search(matrix, word):
-    """
-    Find if word exists in the board using backtracking.
-
-    Args:
-        board: List[List[str]] - m x n grid of characters
-        word: str - word to search for
-
-    Returns:
-        bool - True if word exists in grid, False otherwise
-    """
-    if not matrix or not matrix[0] or not word:
+# TC - O(R*C*4^L), SC - O(N)
+def word_search(M, word):
+    # Find if word exists in the board using backtracking.
+    # Args:
+    #     board: List[List[str]] - m x n grid of characters
+    #     word: str - word to search for
+    # Returns:
+    #     bool - True if word exists in grid, False otherwise
+    if not M or not M[0] or not word:
         return False
 
-    ROWS, COLS = len(matrix), len(matrix[0])
+    ROWS, COLS = len(M), len(M[0])
 
     def backtrack(R, C, index):
         # Base case: found the complete word
@@ -24,26 +20,24 @@ def word_search(matrix, word):
 
         # Check bounds and character match
         if (R < 0 or R >= ROWS or C < 0 or C >= COLS or
-            matrix[R][C] != word[index] or matrix[R][C] == '#'):
+            M[R][C] != word[index] or M[R][C] == '#'):
             return False
 
         # Mark current cell as visited
-        temp = matrix[R][C]
-        matrix[R][C] = '#'
+        temp = M[R][C]
+        M[R][C] = '#'
 
         # Explore all 4 directions (up, down, left, right)
         directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-        found = False
 
         for next_row, next_col in directions:
             if backtrack(R + next_row, C + next_col, index + 1):
-                found = True
-                break
+                return True
 
         # Restore the cell (backtrack)
-        matrix[R][C] = temp
+        M[R][C] = temp
 
-        return found
+        return False
 
     # Try starting from each cell in the board
     for i in range(ROWS):
