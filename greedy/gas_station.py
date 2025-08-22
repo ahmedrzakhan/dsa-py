@@ -5,17 +5,17 @@ def canCompleteCircuit(gas, cost):
     if sum(gas) < sum(cost):
         return -1
 
-    total_tank = 0
-    starting_station = 0
+    total = 0
+    start = 0
 
     for i in range(len(gas)):
-        total_tank += gas[i] - cost[i]
+        total += gas[i] - cost[i]
 
-        if total_tank < 0:
-            starting_station = i + 1
-            total_tank = 0
+        if total < 0:
+            start = i + 1
+            total = 0
 
-    return starting_station if total_tank >= 0 else -1
+    return start
 
 # Test cases
 # Test case 1
