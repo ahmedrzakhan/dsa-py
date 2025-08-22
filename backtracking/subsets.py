@@ -1,7 +1,7 @@
 # https://leetcode.com/problems/subsets/description/
 
 # TC - O(2^N), SC - O(N)
-def subsets(nums):
+def subsets(A):
     result = []
 
     def backtrack(start, curr_set):
@@ -9,9 +9,9 @@ def subsets(nums):
         result.append(curr_set[:])
 
         # Explore all possible elements from start index
-        for i in range(start, len(nums)):
+        for i in range(start, len(A)):
             # Include current element
-            curr_set.append(nums[i])
+            curr_set.append(A[i])
             # Recurse with next index
             backtrack(i + 1, curr_set)
             # Backtrack by removing the last element
