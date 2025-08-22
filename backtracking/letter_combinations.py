@@ -1,6 +1,6 @@
 # https://leetcode.com/problems/letter-combinations-of-a-phone-number/
 
-# TC - O(4^N), SC - O(N)
+# TC - O(N*4^N), SC - O(N)
 def letterCombinations(digits):
     if not digits:
         return []
@@ -19,10 +19,10 @@ def letterCombinations(digits):
 
     result = []
 
-    def backtrack(index, current):
+    def backtrack(index, curr):
         # If we've processed all digits, add combination to result
         if index == len(digits):
-            result.append(current)
+            result.append(curr)
             return
 
         # Get letters for current digit
@@ -30,7 +30,7 @@ def letterCombinations(digits):
 
         # Try each letter for current digit
         for letter in letters:
-            backtrack(index + 1, current + letter)
+            backtrack(index + 1, curr + letter)
 
     backtrack(0, "")
     return result
