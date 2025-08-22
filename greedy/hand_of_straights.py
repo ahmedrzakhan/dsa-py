@@ -1,5 +1,6 @@
 # https://leetcode.com/problems/hand-of-straights/
 
+from collections import Counter
 # TC - O(NLogN), SC - O(N)
 def isNStraightHand(hand: list[int], groupSize: int) -> bool:
     # Check if hand length is divisible by groupSize
@@ -7,9 +8,7 @@ def isNStraightHand(hand: list[int], groupSize: int) -> bool:
         return False
 
     # Count frequency of each card
-    freq = {}
-    for card in hand:
-        freq[card] = freq.get(card, 0) + 1
+    freq = Counter(hand)
 
     # Sort unique card values
     sorted_cards = sorted(freq.keys())
