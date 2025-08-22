@@ -13,21 +13,21 @@ def permute(nums):
     """
     result = []
 
-    def backtrack(curSet):
+    def backtrack(curr_set):
         # Base case: if current permutation has all elements
-        if len(curSet) == len(nums):
-            result.append(curSet[:])  # Add a copy
+        if len(curr_set) == len(nums):
+            result.append(curr_set[:])  # Add a copy
             return
 
         # Try each unused number / Skip if number is already used
         for num in nums:
-            if num not in curSet:
+            if num not in curr_set:
                 # Choose / Add current number to permutation
-                curSet.append(num)
+                curr_set.append(num)
                 # Explore / Recurse with updated permutation
-                backtrack(curSet)
+                backtrack(curr_set)
                 # Unchoose (backtrack) / Backtrack by removing the number
-                curSet.pop()
+                curr_set.pop()
 
     backtrack([])
     return result
