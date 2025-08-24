@@ -1,48 +1,52 @@
 # https://leetcode.com/problems/rotting-oranges
 
 # TC - O(M*N), SC - O(M*N)
-def orangesRotting(grid):
-    if not grid or not grid[0]:
-        return 0
+def orangesRotting(M):
+    if not M or not M[0]:
+            return 0
 
-    ROWS, COLS = len(grid), len(grid[0])
+    ROWS, COLS = len(M), len(M[0])
     fresh = 0
     queue = []
 
-    # First pass to count fresh oranges and enqueue rotten oranges
+    # Count fresh oranges and find initial rotten ones
     for i in range(ROWS):
         for j in range(COLS):
-            if grid[i][j] == 1:
+            if M[i][j] == 1:
                 fresh += 1
-            elif grid[i][j] == 2:
+            elif M[i][j] == 2:
                 queue.append([i, j])
 
     if fresh == 0:
         return 0
 
-    directions = [[-1, 0], [1, 0], [0, -1], [0, 1]]
+    directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
     minutes = 0
 
-    # BFS
-    while queue:
+    while queue and fresh > 0:
         queueLength = len(queue)
-        rottenSpread = False
+
+        # Process all rotten oranges at current time
         for i in range(queueLength):
-            cell = queue.pop(0)
+            cell = queue.pop(0)  # Use popleft() for proper BFS
+
             for dir in directions:
                 nextRow, nextCol = cell[0] + dir[0], cell[1] + dir[1]
-                if nextRow < 0 or nextRow >= ROWS or nextCol < 0 or nextCol >= COLS:
+
+                if (nextRow < 0 or nextRow >= ROWS or
+                    nextCol < 0 or nextCol >= COLS):
                     continue
-                if grid[nextRow][nextCol] == 1:
-                    grid[nextRow][nextCol] = 2
+
+                if M[nextRow][nextCol] == 1:
+                    M[nextRow][nextCol] = 2
                     fresh -= 1
                     queue.append([nextRow, nextCol])
-                    rottenSpread = True
-        if rottenSpread:
-            minutes += 1
 
-    if fresh == 0:
-        return minutes
+        # Increment time after processing all current rotten oranges
+        minutes += 1
+
+        if fresh == 0:
+            return minutes
     return -1
 
 grid = [
