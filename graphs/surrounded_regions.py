@@ -1,19 +1,19 @@
 # https://leetcode.com/problems/surrounded-regions
 
 # TC - O(R*C), SC - O(R*C)
-def solve(grid):
-    if not grid or not grid[0]:
+def solve(M):
+    if not M or not M[0]:
         return
 
-    ROWS = len(grid)
-    COLS = len(grid[0])
+    ROWS = len(M)
+    COLS = len(M[0])
 
     # Helper function for DFS
     def dfs(R, C):
-        if (R < 0 or R >= ROWS or C < 0 or C >= COLS or grid[R][C] != 'O'):
+        if (R < 0 or R >= ROWS or C < 0 or C >= COLS or M[R][C] != 'O'):
             return
         # Mark as visited by changing 'O' to '#'
-        grid[R][C] = '#'
+        M[R][C] = '#'
         # Explore all four directions
         dfs(R+1, C)  # Down
         dfs(R-1, C)  # Up
@@ -23,25 +23,25 @@ def solve(grid):
     # Step 1: Mark 'O' cells connected to edges as '#'
     # Check first and last rows
     for C in range(COLS):
-        if grid[0][C] == 'O':
+        if M[0][C] == 'O':
             dfs(0, C)
-        if grid[ROWS-1][C] == 'O':
+        if M[ROWS-1][C] == 'O':
             dfs(ROWS-1, C)
 
     # Check first and last columns
     for R in range(ROWS):
-        if grid[R][0] == 'O':
+        if M[R][0] == 'O':
             dfs(R, 0)
-        if grid[R][COLS-1] == 'O':
+        if M[R][COLS-1] == 'O':
             dfs(R, COLS-1)
 
     # Step 2: Convert remaining 'O' to 'X', and '#' back to 'O'
     for R in range(ROWS):
         for C in range(COLS):
-            if grid[R][C] == 'O':
-                grid[R][C] = 'X'
-            elif grid[R][C] == '#':
-                grid[R][C] = 'O'
+            if M[R][C] == 'O':
+                M[R][C] = 'X'
+            elif M[R][C] == '#':
+                M[R][C] = 'O'
 
 # Example usage
 # Example 1
