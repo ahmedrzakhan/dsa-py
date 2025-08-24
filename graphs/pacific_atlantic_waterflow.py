@@ -1,11 +1,11 @@
 # https://leetcode.com/problems/pacific-atlantic-water-flow
 
 # TC - O(R*C), SC - O(R*C)
-def pacificAtlantic(grid):
-    if not grid or not grid[0]:
+def pacificAtlantic(M):
+    if not M or not M[0]:
         return []
 
-    ROWS, COLS = len(grid), len(grid[0])
+    ROWS, COLS = len(M), len(M[0])
     # Sets to track cells reachable from Pacific and Atlantic
     pacific = set()
     atlantic = set()
@@ -13,14 +13,14 @@ def pacificAtlantic(grid):
     def dfs(R, C, visited, prev_height):
         # Check boundaries, if already visited, or if height condition not met
         if (R < 0 or R >= ROWS or C < 0 or C >= COLS or
-            (R, C) in visited or grid[R][C] < prev_height):
+            (R, C) in visited or M[R][C] < prev_height):
             return
         visited.add((R, C))
         # Explore all four directions
-        dfs(R + 1, C, visited, grid[R][C])
-        dfs(R - 1, C, visited, grid[R][C])
-        dfs(R, C + 1, visited, grid[R][C])
-        dfs(R, C - 1, visited, grid[R][C])
+        dfs(R + 1, C, visited, M[R][C])
+        dfs(R - 1, C, visited, M[R][C])
+        dfs(R, C + 1, visited, M[R][C])
+        dfs(R, C - 1, visited, M[R][C])
 
     # Run DFS from Pacific borders (left edge and top edge)
     for R in range(ROWS):
