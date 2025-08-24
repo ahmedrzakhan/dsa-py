@@ -11,17 +11,17 @@ def cloneGraph(node: 'Node') -> 'Node':
 
     visited = {}  # Map original node to its clone
 
-    def dfsClone(node):
+    def dfs(node):
         if node in visited:
             return visited[node]
 
-        newNode = Node(node.val)
-        visited[node] = newNode
+        new_node = Node(node.val)
+        visited[node] = new_node
         for neighbor in node.neighbors:
-            newNode.neighbors.append(dfsClone(neighbor))
-        return newNode
+            new_node.neighbors.append(dfs(neighbor))
+        return new_node
 
-    return dfsClone(node)
+    return dfs(node)
 
 # Test function matching Go's mainCloneGraph
 def mainCloneGraph():
