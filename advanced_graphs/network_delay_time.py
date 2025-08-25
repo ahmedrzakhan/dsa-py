@@ -5,39 +5,37 @@ import heapq
 
 # TC - O(ELogN), SC - O(N+E)
 def networkDelayTime(times, n, k):
-    # Build adjacency list
+    # Build adjacency list representation of the graph
     graph = defaultdict(list)
     for u, v, w in times:
         graph[u].append((v, w))
 
-    # Initialize distances
-    dist = {i: float('inf') for i in range(1, n + 1)}
-    dist[k] = 0
+    # Dijkstra's algorithm using min-heap
+    # Format: (distance, node)
+    min_heap = [(0, k)]
+    distances = {}
 
-    # Min-heap for Dijkstra's algorithm
-    pq = [(0, k)]  # (distance, node)
-    visited = set()
+    while min_heap:
+        dist, node = heapq.heappop(min_heap)
 
-    while pq:
-        d, u = heapq.heappop(pq)
-
-        if u in visited:
+        # Skip if we've already found a shorter path to this node
+        if node in distances:
             continue
 
-        visited.add(u)
+        # Record the shortest distance to this node
+        distances[node] = dist
 
         # Explore neighbors
-        for v, w in graph[u]:
-            if d + w < dist[v]:
-                dist[v] = d + w
-                heapq.heappush(pq, (d + w, v))
+        for neighbor, weight in graph[node]:
+            if neighbor not in distances:
+                heapq.heappush(min_heap, (dist + weight, neighbor))
 
     # Check if all nodes are reachable
-    if len(visited) < n:
+    if len(distances) != n:
         return -1
 
-    # Return maximum distance
-    return max(dist.values())
+    # Return the maximum distance (time for last node to receive signal)
+    return max(distances.values())
 
 # Example 1
 times = [[2,1,1],[2,3,1],[3,4,1]]
