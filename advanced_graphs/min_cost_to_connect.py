@@ -4,29 +4,44 @@ import heapq
 
 # TC - O(N^2LogN), SC - O(N^2)
 def minCostConnectPoints(points):
+    # Find minimum cost to connect all points using Manhattan distance.
+    # Uses Prim's algorithm to build Minimum Spanning Tree.
+    # Args:
+    #     points: List of [x, y] coordinates
+    # Returns:
+    #     Minimum cost to connect all points
     N = len(points)
-    adj = {i: [] for i in range(N)}
-    for i in range(N):
-        x1, y1 = points[i]
-        for j in range(i + 1, N):
-            x2, y2 = points[j]
-            dist = abs(x1 - x2) + abs(y1 - y2)
-            adj[i].append([dist, j])
-            adj[j].append([dist, i])
+    if N <= 1:
+        return 0
 
-    res = 0
-    visit = set()
-    minH = [[0, 0]]
-    while len(visit) < N:
-        cost, i = heapq.heappop(minH)
-        if i in visit:
+    def manhattan_distance(p1, p2):
+        return abs(p1[0] - p2[0]) + abs(p1[1] - p2[1])
+
+    # Prim's algorithm
+    visited = set()
+    # Min-heap: (cost, point_index)
+    heap = [(0, 0)]  # Start from point 0 with cost 0
+    total_cost = 0
+
+    while heap and len(visited) < N:
+        cost, point_idx = heapq.heappop(heap)
+
+        # Skip if already visited
+        if point_idx in visited:
             continue
-        res += cost
-        visit.add(i)
-        for neiCost, nei in adj[i]:
-            if nei not in visit:
-                heapq.heappush(minH, [neiCost, nei])
-    return res
+
+        # Add this point to MST
+        visited.add(point_idx)
+        total_cost += cost
+
+        # Add all edges from this point to unvisited points
+        current_point = points[point_idx]
+        for i in range(N):
+            if i not in visited:
+                edge_cost = manhattan_distance(current_point, points[i])
+                heapq.heappush(heap, (edge_cost, i))
+
+    return total_cost
 
 # Test case 1
 points1 = [[0,0], [2,2], [3,10], [5,2], [7,0]]
