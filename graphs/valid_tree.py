@@ -57,3 +57,8 @@ n = 4
 edges = [[0, 1], [2, 3]]
 print("Test 4:", validTree(n, edges))  # Expected: False
 
+
+# NOTE: If it has fewer than n-1 edges, it cannot be connected
+# If it has more than n-1 edges, it must contain at least one cycle
+# If it has exactly n-1 edges, it can be a tree (but you still need to verify connectivity)
+
