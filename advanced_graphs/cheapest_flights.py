@@ -3,35 +3,27 @@ import heapq
 
 # TC - O(ELogV), SC - O(V+E)
 def findCheapestPrice(n, flights, src, dst, k):
-    # Create adjacency list
-    graph = defaultdict(list)
-    for start, end, price in flights:
-        graph[start].append((end, price))
+    # Alternative solution using Bellman-Ford algorithm.
+    # More intuitive for this specific problem.
+    # Initialize distances
+    # dist[i] = minimum cost to reach city i
+    dist = [float('inf')] * n
+    dist[src] = 0
 
-    # Priority queue: (price, node, stops)
-    pq = [(0, src, 0)]
+    # Relax edges at most k+1 times (k stops = k+1 edges)
+    for _ in range(k + 1):
+        temp_dist = dist[:]  # Copy current distances
 
-    # Track visited nodes with stops: (node, stops)
-    visited = {}
+        for from_city, to_city, price in flights:
+            if dist[from_city] != float('inf'):
+                temp_dist[to_city] = min(temp_dist[to_city], dist[from_city] + price)
 
-    while pq:
-        price, node, stops = heapq.heappop(pq)
+        dist = temp_dist
 
-        # If we reached destination
-        if node == dst:
-            return price
-
-        # If we can still make stops
-        if stops <= k:
-            for next_node, next_price in graph[node]:
-                new_price = price + next_price
-                # Only add to queue if we haven't seen this node with same or fewer stops
-                # or if we found a cheaper price for same stops
-                if (next_node, stops + 1) not in visited or new_price < visited[(next_node, stops + 1)]:
-                    visited[(next_node, stops + 1)] = new_price
-                    heapq.heappush(pq, (new_price, next_node, stops + 1))
-
-    return -1
+    if dist[dst] != float('inf'):
+        return dist[dst]
+    else:
+        return -1
 
 # Example 1
 n1 = 4
