@@ -1,27 +1,20 @@
 # https://leetcode.com/problems/longest-increasing-subsequence
 
-# TC - O(NLogN), SC - O(N)
-def lengthOfLIS(nums):
-    # tails[i] stores the smallest value that ends an increasing subsequence of length i+1
-    tails = []
+# TC - O(N^2), SC - O(N)
+def lengthOfLIS(A):
+    # LIS[i] represents the length of the longest increasing subsequence
+    # ending at index i.
+    if not A:
+        return 0
 
-    for num in nums:
-        # Binary search to find the position to insert num
-        L, R = 0, len(tails)
-        while L < R:
-            mid = (L + R) // 2
-            if tails[mid] < num:
-                L = mid + 1
-            else:
-                R = mid
-        # If we're at the end, append the number
-        if L == len(tails):
-            tails.append(num)
-        # Otherwise, replace the number at position left
-        else:
-            tails[L] = num
+    LIS = [1] * len(A)
 
-    return len(tails)
+    for i in range(len(A) - 1, -1, -1):
+        for j in range(i + 1, len(A)):
+            if A[i] < A[j]:
+                LIS[i] = max(LIS[i], 1 + LIS[j])
+
+    return max(LIS)
 
 # Test cases
 test_cases = [
