@@ -13,7 +13,7 @@ def maxProduct(A):
         # Store current_max for use in min calculation
         temp_max = cur_max
         # Current max is the maximum of: current number, product with previous max, product with previous min
-        cur_max = max(ele, cur_max * ele, cur_min * ele)
+        cur_max = max(ele, temp_max * ele, cur_min * ele)
         # Current min is the minimum of: current number, product with previous max, product with previous min
         cur_min = min(ele, temp_max * ele, cur_min * ele)
         # Update global max if current max is larger
@@ -23,5 +23,6 @@ def maxProduct(A):
 
 # Example usage for local testing
 # Test cases
+print(maxProduct([[-4,-3,-2]]))
 print(maxProduct([2, 3, -2, 4]))  # Output: 6
 print(maxProduct([-2, 0, -1]))    # Output: 0
