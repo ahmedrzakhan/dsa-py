@@ -18,7 +18,10 @@ def coinChange(coins, amount):
                 dp[i] = min(dp[i], dp[i - coin] + 1)
 
     # Return result: -1 if impossible, otherwise minimum coins needed
-    return dp[amount] if dp[amount] != amount + 1 else -1
+    if dp[amount] != amount + 1:
+            return dp[amount]
+    else:
+        return -1
 
 # Test cases
 print(coinChange([1, 2, 5], 11))  # Output: 3
