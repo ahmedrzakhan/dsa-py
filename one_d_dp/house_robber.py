@@ -19,6 +19,7 @@ def rob(A):
     return dp[-1]
 
 # Test cases
+print(rob([100, 1, 1, 100]))  # Output: 200
 print(rob([1,2,3,1]))  # Output: 4
 print(rob([2,7,9,3,1]))  # Output: 12
 print(rob([1,3,5,7]))  # Output: 8
