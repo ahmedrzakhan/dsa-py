@@ -8,7 +8,6 @@ def isHappy(n: int) -> bool:
             return False
         seen.add(n)
         n = sum(int(digit) ** 2 for digit in str(n))
-        print(n)
     return True
 
 
