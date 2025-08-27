@@ -2,12 +2,14 @@
 
 # TC - O(N), SC - O(1)
 def hammingWeight(n: int) -> int:
-    # Optimized bitwise approach
-    count = 0
-    while n:
-        count += n & 1  # Check least significant bit
-        n >>= 1        # Right shift by 1
-    return count
+    ans = [0] * (n + 1)
+
+    for i in range(1, n + 1):
+        # i >> 1 is equivalent to i // 2
+        # i & 1 checks if i is odd (adds 1 if odd, 0 if even)
+        ans[i] = ans[i >> 1] + (i & 1)
+
+    return ans
 
 # Test cases
 test_cases = [
