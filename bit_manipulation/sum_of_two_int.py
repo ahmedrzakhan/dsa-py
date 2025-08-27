@@ -2,14 +2,26 @@
 
 # TC - O(1), SC - O(1)
 def getSum(a: int, b: int) -> int:
-    mask = 0xffffffff  # 32-bit mask to simulate 32-bit integer arithmetic (2^32 - 1)
+    # 32-bit mask to simulate 32-bit integer arithmetic
+    mask = 0xFFFFFFFF
+    # Maximum positive value for a 32-bit signed integer
+    max_int = 0x7FFFFFFF
 
-    while (b & mask) > 0:  # Continue loop while there is a carry bit
-        carry = ((a & b) << 1) & mask  # Calculate carry by ANDing a and b, shifting left, and masking
-        a = (a ^ b) & mask  # Compute sum without carry using XOR, then mask to 32 bits
-        b = carry  # Update b with the carry for the next iteration
+    # Perform addition using bitwise operations (no + operator)
+    while b != 0:
+        # Calculate carry bits: where both a and b have 1s, shifted left by 1
+        carry = (a & b) << 1
 
-    return a if a <= 0x7fffffff else (a | ~mask)  # Return a if positive or within 32-bit signed range, otherwise adjust for negative
+        # XOR gives sum without carry, mask ensures 32-bit bounds
+        a = (a ^ b) & mask
+
+        # Update b to be the carry for next iteration, mask ensures 32-bit bounds
+        b = carry & mask
+
+    # Handle signed integer conversion:
+    # If result fits in positive 32-bit range, return as-is
+    # Otherwise, convert to negative by flipping bits relative to 32-bit boundary
+    return a if a <= max_int else ~(a ^ mask)
 
 
 # print(getSum(1, 2) == 3)
