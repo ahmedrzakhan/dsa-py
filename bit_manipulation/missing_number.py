@@ -1,11 +1,23 @@
 # https://leetcode.com/problems/missing-number
 
+# Approach 1: Mathematical Sum Formula
+# Time: O(n), Space: O(1)
+# The sum of numbers from 0 to n is n*(n+1)/2
+# Missing number = expected_sum - actual_sum
+# n = len(nums)
+# expected_sum = n * (n + 1) // 2
+# actual_sum = sum(nums)
+# return expected_sum - actual_sum
+
 # TC - O(N), SC - O(1)
 def missingNumber(nums):
-    missing = len(nums)  # Initialize with n (length of array)
-    for i, num in enumerate(nums):
-        missing ^= i ^ num
-    return missing
+    n = len(nums)
+    result = n  # Start with n
+
+    for i in range(n):
+        result ^= i ^ nums[i]
+
+    return result
 
 # Test cases
 print(missingNumber([3, 0, 1]) == 2)
