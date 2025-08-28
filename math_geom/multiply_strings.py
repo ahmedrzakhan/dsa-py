@@ -2,39 +2,49 @@
 
 # TC - O(M*N), SC - O(M*N)
 def multiply(num1: str, num2: str) -> str:
-    # Handle edge case of zero
-    if num1 == "0" or num2 == "0":
+    # Handle edge case: if either number is "0", result is "0"
+    if "0" in [num1, num2]:
         return "0"
 
-    # Initialize result array to store digits (reverse order for easier calculation)
-    m, n = len(num1), len(num2)
-    result = [0] * (m + n)
+    # Initialize result array with zeros
+    # Maximum possible length is len(num1) + len(num2)
+    # Example: 99 * 99 = 9801 (2 digits + 2 digits = 4 digits max)
+    res = [0] * (len(num1) + len(num2))
 
-    # Multiply each digit
-    for i in range(m - 1, -1, -1):
-        for j in range(n - 1, -1, -1):
-            # Convert characters to integers
-            digit1 = ord(num1[i]) - ord('0')
-            digit2 = ord(num2[j]) - ord('0')
+    # Reverse both strings to process from least significant digit first
+    # This makes indexing easier for positional multiplication
+    num1, num2 = num1[::-1], num2[::-1]
 
-            # Multiply digits and add to result at appropriate position
-            product = digit1 * digit2
-            pos1, pos2 = i + j, i + j + 1
-            product += result[pos2]
+    # Nested loop to multiply each digit of num1 with each digit of num2
+    for i1 in range(len(num1)):
+        for i2 in range(len(num2)):
+            # Multiply current digits
+            digit = int(num1[i1]) * int(num2[i2])
 
-            # Update result array with carry
-            result[pos2] = product % 10
-            result[pos1] += product // 10
+            # Add the product to the appropriate position in result array
+            # Position i1 + i2 is where this multiplication contributes
+            res[i1 + i2] += digit
 
-    # Convert result array to string, skipping leading zeros
-    result_str = ""
-    for digit in result:
-        if not (result_str == "" and digit == 0):
-            result_str += str(digit)
+            # Handle carry: move tens digit to next position
+            res[i1 + i2 + 1] += res[i1 + i2] // 10
 
-    # Return "0" if result is empty (happens if product is 0)
-    return result_str if result_str else "0"
+            # Keep only units digit in current position
+            res[i1 + i2] = res[i1 + i2] % 10
+
+    # Post-process the result array
+    # Reverse back to get most significant digit first
+    res = res[::-1]
+
+    # Find the first non-zero digit to remove leading zeros
+    beg = 0
+    while beg < len(res) and res[beg] == 0:
+        beg += 1
+
+    # Convert remaining digits to strings and join them
+    # res[beg:] removes leading zeros
+    res = map(str, res[beg:])
+    return "".join(res)
 
 # Test cases
-print(multiply("2", "3"))  # Output: "6"
+# print(multiply("2", "3"))      # Output: "6"
 print(multiply("123", "456"))  # Output: "56088"
