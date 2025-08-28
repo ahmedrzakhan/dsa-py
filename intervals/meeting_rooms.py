@@ -1,4 +1,6 @@
 # https://leetcode.com/problems/meeting-rooms/
+
+# TC - O(NLogN), SC - O(1)
 def canAttendMeetings(intervals):
     # Determine if a person can attend all meetings without conflicts.
     # Args: intervals: List of tuples [(start, end), ...] representing meeting times
