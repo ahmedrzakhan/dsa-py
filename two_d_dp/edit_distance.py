@@ -61,5 +61,5 @@ test_cases = [
 print("Additional test cases:")
 for w1, w2 in test_cases:
     result1 = minDistance(w1, w2)
-    print(f"'{w1}' -> '{w2}': {result1} (optimized: {result2})")
+    print(f"'{w1}' -> '{w2}': {result1}")
 
