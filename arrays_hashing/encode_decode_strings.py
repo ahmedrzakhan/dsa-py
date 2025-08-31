@@ -3,12 +3,9 @@
 class Codec:
     # TC - O(N), SC - O(N)
     def encode(self, strs):
-        """Encodes a list of strings to a single string.
-        Args:
-            strs: List[str] - List of strings to encode
-        Returns:
-            str - The encoded string
-        """
+        # Encodes a list of strings to a single string.
+        # Args: strs: List[str] - List of strings to encode
+        # Returns: str - The encoded string
         result = ""
         for s in strs:
             # Append the length of the string, a delimiter '#', and then the string itself
@@ -17,12 +14,9 @@ class Codec:
 
     # TC - O(N), SC - O(N)
     def decode(self, s):
-        """Decodes a single string to a list of strings.
-        Args:
-            s: str - The encoded string
-        Returns:
-            List[str] - The decoded list of strings
-        """
+        # Decodes a single string to a list of strings.
+        # Args: s: str - The encoded string
+        # Returns: List[str] - The decoded list of strings
         result = []
         i = 0
 
@@ -36,12 +30,12 @@ class Codec:
             length = int(s[i:j])
 
             # Extract the string itself
-            start_pos = j + 1
-            end_pos = start_pos + length
-            result.append(s[start_pos:end_pos])
+            start = j + 1
+            end = start + length
+            result.append(s[start:end])
 
             # Move to the start of the next length indicator
-            i = end_pos
+            i = end
 
         return result
 
@@ -49,7 +43,7 @@ class Codec:
 codec = Codec()
 
 # Example 1
-input1 = ["neet", "code", "love", "you"]
+input1 = ["#", "neet", "code", "love", "you"]
 encoded1 = codec.encode(input1)
 decoded1 = codec.decode(encoded1)
 print(f"Example 1 - Input: {input1}")
