@@ -5,12 +5,21 @@ import heapq
 
 # TC - O(NLogK), SC - O(N)
 def topKFrequent(nums, k):
-    # Count frequency of each number
-    count = Counter(nums)
+    # Solution 1: Using Min Heap
+    # Time: O(n log k), Space: O(n)
+    # Count frequencies
+    counter = Counter(nums)
 
-    # Use heap to get k most frequent elements
-    # heapq.nlargest returns the k largest elements based on the frequency
-    return heapq.nlargest(k, count.keys(), key=count.get)
+    # Use min heap to keep track of top k elements
+    min_heap = []
+
+    for num, freq in counter.items():
+        heapq.heappush(min_heap, (freq, num))
+        if len(min_heap) > k:
+            heapq.heappop(min_heap)
+
+    # Extract elements from heap
+    return [num for _, num in min_heap]
 
 # TC - O(NLogN), SC - O(N)
 def topKFrequent_sorting(nums, k):
