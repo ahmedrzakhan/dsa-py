@@ -1,22 +1,22 @@
 # https://leetcode.com/problems/two-sum/
 
 # TC - O(N), SC - O(N)
-def twoSum(nums, target):
+def twoSum(A, target):
     # Create a dictionary to store the complement of each number and its index
-    prev_dict = {}
+    D = {}
 
     # Iterate through the array
-    for i, num in enumerate(nums):
+    for i in range(A):
         # Calculate the complement needed to reach the target
-        diff = target - num
+        diff = target - A[i]
 
         # Check if the complement exists in our dictionary
-        if diff in prev_dict:
+        if diff in D:
             # If found, return both indices
-            return [prev_dict[diff], i]
+            return [D[diff], i]
 
         # Otherwise, add the current number and its index to the dictionary
-        prev_dict[num] = i
+        D[A[i]] = i
 
     return []
 
