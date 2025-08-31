@@ -1,9 +1,9 @@
 # https://leetcode.com/problems/group-anagrams/description/
 
-# TC - O(N * K) SC - O(N * K)
+# TC - O(N * K) SC - O(N * K) N = number of strings in the input K = maximum length of any string
 def groupAnagrams(strs):
     # Create a dictionary to store character frequency tuple as key and list of anagrams as value
-    ana_dict = {}
+    D = {}
 
     # Iterate through each string
     for s in strs:
@@ -18,14 +18,14 @@ def groupAnagrams(strs):
         key = tuple(char_count)
 
         # Add string to appropriate anagram group
-        if key in ana_dict:
-            ana_dict[key].append(s)
+        if key in D:
+            D[key].append(s)
         else:
-            ana_dict[key] = [s]
+            D[key] = [s]
 
 
     # Return all grouped anagrams
-    return list(ana_dict.values())
+    return list(D.values())
 
 # Test cases
 test1 = ["eat","tea","tan","ate","nat","bat"]
