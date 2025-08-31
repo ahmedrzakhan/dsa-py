@@ -3,11 +3,11 @@
 from typing import List
 
 # TC - O(N), SC - O(N)
-def containsDuplicate(nums: List[int]) -> bool:
+def containsDuplicate(A: List[int]) -> bool:
         # Convert the list to a set (which removes duplicates) and compare lengths
         # If the original list length is not equal to the set length,
         # it means some elements were duplicates that got removed
-        return len(nums) != len(set(nums))
+        return len(A) != len(set(A))
 
 
 test1 = [1, 2, 3, 1]
