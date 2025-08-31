@@ -12,7 +12,10 @@ def isAnagram(s: str, t: str) -> bool:
     # Count occurrences of each character in first string (s)
     for char in s:
         # Add 1 to existing count or start at 1 if char not seen before
-        char_count[char] = char_count.get(char, 0) + 1
+        if char in char_count:
+            char_count[char] += 1
+        else:
+            char_count[char] = 1
 
     # Check second string (t) against character counts
     for char in t:
