@@ -18,9 +18,9 @@ def threeSum(A):
         R = N - 1
 
         while L < R:
-            curr_sum = A[i] + A[L] + A[R]
+            summ = A[i] + A[L] + A[R]
 
-            if curr_sum == 0:
+            if summ == 0:
                 # Found a valid triplet
                 result.append([A[i], A[L], A[R]])
 
@@ -34,7 +34,7 @@ def threeSum(A):
                 L += 1
                 R -= 1
 
-            elif curr_sum < 0:
+            elif summ < 0:
                 L += 1
             else:
                 R -= 1
