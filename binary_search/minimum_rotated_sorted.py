@@ -3,7 +3,8 @@
 # TC - O(LogN), SC - O(1)
 def findMin(A):
     # If array has only one element, return it
-    if len(A) == 1:
+    N = len(A)
+    if N == 1:
         return A[0]
 
     L = 0
@@ -19,13 +20,13 @@ def findMin(A):
         mid = (L + R) // 2
 
         # Check if mid+1 is the minimum element
-        # by comparing with mid
-        if A[mid] > A[mid + 1]:
+        # by comparing with mid # NOTE: mid < N-1 is bounds check
+        if mid < N-1 and A[mid] > A[mid + 1]:
             return A[mid + 1]
 
         # Check if mid is the minimum element
-        # by comparing with mid-1
-        if A[mid - 1] > A[mid]:
+        # by comparing with mid-1 # NOTE: mid > 0 is bounds check
+        if mid > 0 and A[mid - 1] > A[mid]:
             return A[mid]
 
         # If mid element is greater than first element,
