@@ -36,8 +36,6 @@ class TimeMap:
         # Binary search
         while L <= R:
             mid = (L + R) // 2
-            print("values[mid]", values[mid])
-            print("values[mid][0]", values[mid][0])
             if values[mid][0] == timestamp:
                 return values[mid][1]
             elif values[mid][0] < timestamp:
