@@ -12,7 +12,7 @@ def reorderList(head):
 
     # Step 1: Find the middle of the linked list
     slow, fast = head, head
-    while fast.next and fast.next.next:
+    while fast and fast.next:
         slow = slow.next
         fast = fast.next.next
 
