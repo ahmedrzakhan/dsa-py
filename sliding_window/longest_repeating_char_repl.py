@@ -7,7 +7,10 @@ def characterReplacement(s: str, k: int) -> int:
 
     for R in range(len(s)):
         # Update character count
-        count[s[R]] = count.get(s[R], 0) + 1
+        if s[R] in count:
+            count[s[R]] += 1
+        else:
+            count[s[R]] = 1
 
         # Window size minus most frequent char count gives replacements needed
         window_size = R - L + 1
