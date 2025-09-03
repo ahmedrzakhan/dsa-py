@@ -24,12 +24,12 @@ def searchMatrix(matrix: list[list[int]], target: int) -> bool:
     L, R = 0, COLS - 1
     while L <= R:
         mid = (L + R) // 2
-        if target > matrix[ROW][mid]:
-            L = mid + 1
-        elif target < matrix[ROW][mid]:
-            R = mid - 1
-        else:
+        if matrix[ROW][mid] == target:
             return True
+        elif matrix[ROW][mid] < target:
+            L = mid + 1
+        else:
+            R = mid - 1
     return False
 
 # Test cases
