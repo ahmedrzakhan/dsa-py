@@ -24,7 +24,7 @@ def minEatingSpeed(piles, h):
         else:
             R = mid
 
-    return L
+    return R
 
 # Test cases
 print(minEatingSpeed([3,6,7,11], 8))  # Output: 4
