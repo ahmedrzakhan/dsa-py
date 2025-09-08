@@ -6,7 +6,7 @@ from typing import List
 def carFleet(target: int, position: List[int], speed: List[int]) -> int:
     # Create list of tuples with (position, speed) pairs using list comprehension
     # zip() pairs up corresponding elements from position and speed lists
-    pair = [(p, s) for p, s in zip(position, speed)]
+    pair = list(zip(position, speed))
 
     # Sort pairs in descending order by position
     # This processes cars from right (closest to target) to left
