@@ -31,7 +31,7 @@ def findMin(A):
 
         # If mid element is greater than first element,
         # minimum lies in right half
-        if A[mid] > A[0]:
+        if A[mid] > A[L]:
             L = mid + 1
         # If mid element is less than first element,
         # minimum lies in left half
