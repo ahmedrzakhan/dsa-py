@@ -22,10 +22,11 @@ class TimeMap:
 
         # Binary search to find the largest timestamp <= given timestamp
         values = self.store[key]
-        print("values", values)
+
         L, R = 0, len(values) - 1
 
-        # If timestamp is smaller than the first entry, return empty string
+        # If timestamp is smaller
+        #  the first entry, return empty string
         if values[0][0] > timestamp:
             return ""
 
