@@ -4,8 +4,8 @@
 def findDuplicate(nums: list[int]) -> int:
     # Floyd's Tortoise and Hare (Cycle Detection)
     # Initialize tortoise and hare
-    slow = nums[0]
-    fast = nums[0]
+    slow = 0
+    fast = 0
 
     # Phase 1: Find intersection point of tortoise and hare
     while True:
@@ -15,12 +15,12 @@ def findDuplicate(nums: list[int]) -> int:
             break
 
     # Phase 2: Find entrance to the cycle
-    slow = nums[0]
-    while slow != fast:
+    fast = 0
+    while True:
         slow = nums[slow]  # Move one step
         fast = nums[fast]          # Move one step
-
-    return slow
+        if slow == fast:
+            return slow
 
 # Test cases
 print(findDuplicate([1, 3, 4, 2, 2]))  # Output: 2
