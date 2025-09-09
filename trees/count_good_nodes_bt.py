@@ -14,11 +14,9 @@ def goodNodes(root: TreeNode) -> int:
             return 0
 
         # Count current node as good if its value is >= max seen so far
-        count = 1
+        count = 0
         if node.val >= max_so_far:
             count = 1
-        else:
-            count = 0
 
         # Update max value for children
         max_so_far = max(max_so_far, node.val)
