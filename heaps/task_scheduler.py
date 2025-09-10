@@ -9,22 +9,22 @@ def leastInterval(tasks, n):
     count = Counter(tasks)  # e.g., for tasks=["A", "A", "B"], count = {'A': 2, 'B': 1}
 
     # Create a max heap by negating counts (since heapq is a min-heap)
-    maxHeap = [-cnt for cnt in count.values()]  # e.g., [2, 1] becomes [-2, -1]
-    heapq.heapify(maxHeap)  # Convert list into a heap for efficient max extraction
+    max_heap = [-cnt for cnt in count.values()]  # e.g., [2, 1] becomes [-2, -1]
+    heapq.heapify(max_heap)  # Convert list into a heap for efficient max extraction
 
     time = 0  # Tracks the current time (or CPU cycles)
     q = deque()  # Queue to store tasks that are cooling down: [-count, idle_until_time]
 
     # Continue until both the heap and queue are empty
-    while maxHeap or q:
+    while max_heap or q:
         time += 1  # Increment time for each cycle
 
         # If no tasks are in the heap, jump to the earliest time a task is ready
-        if not maxHeap:
-            time = q[0][1]  # Set time to when the first task in queue is available
+        if not max_heap:
+            time = q[0][1]  # Set time to wen the first task in queue is available
         else:
             # Pop the task with the highest remaining count (negated, so add 1)
-            cnt = 1 + heapq.heappop(maxHeap)  # e.g., -2 becomes -1 (one task used)
+            cnt = 1 + heapq.heappop(max_heap)  # e.g., -2 becomes -1 (one task used)
             # If this task still has remaining executions, add it to the queue
             if cnt:
                 q.append([cnt, time + n])  # Task waits until time + n (cooldown period)
@@ -32,7 +32,7 @@ def leastInterval(tasks, n):
         # Check if any task in the queue is ready to be executed (cooldown expired)
         if q and q[0][1] == time:
             # Move the task from queue back to heap (ready to execute again)
-            heapq.heappush(maxHeap, q.popleft()[0])
+            heapq.heappush(max_heap, q.popleft()[0])
 
     return time  # Return total time required to complete all tasks
 
