@@ -4,18 +4,21 @@ import heapq
 
 # TC - O(NLogK), SC - O(K)
 # Approach 1: Using a min-heap of size k
-def findKthLargest(nums, k):
+def findKthLargest(A, k):
+    # Initialize an empty list to serve as a min-heap
     min_heap = []
 
-    # Build a min-heap of size k
-    for num in nums:
-        if len(min_heap) < k:
-            heapq.heappush(min_heap, num)
-        elif num > min_heap[0]:
-            heapq.heappop(min_heap)
-            heapq.heappush(min_heap, num)
+    # Iterate through each element in array A
+    for ele in A:
+    # Push the current element onto the min-heap
+        heapq.heappush(min_heap, ele)
 
-    # The root of the heap will be the kth largest element
+    # If heap size exceeds k, remove the smallest element
+    # This maintains exactly k largest elements seen so far
+        if len(min_heap) > k:
+            heapq.heappop(min_heap)
+
+    # Return the smallest element in the heap (which is the kth largest overall)
     return min_heap[0]
 
 
