@@ -5,17 +5,17 @@ import heapq
 # TC - O(KLogN), SC - O(N)
 def kClosest(points: list[list[int]], k: int) -> list[list[int]]:
     # Create a min-heap of points based on their distance from origin
-    heap = []
+    min_heap = []
     for x, y in points:
         # Calculate Euclidean distance squared (no need for sqrt as relative order is same)
         dist = x*x + y*y
         # Push (distance, x, y) to heap
-        heapq.heappush(heap, (dist, x, y))
+        heapq.heappush(min_heap, (dist, x, y))
 
     # Extract k closest points from heap
     result = []
     for _ in range(k):
-        dist, x, y = heapq.heappop(heap)
+        dist, x, y = heapq.heappop(min_heap)
         result.append([x, y])
 
     return result
