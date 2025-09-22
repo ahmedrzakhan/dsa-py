@@ -8,7 +8,7 @@ def reverseBits(n: int) -> int:
     result = 0
 
     # Process all 32 bits
-    for i in range(32):
+    for _ in range(32):
         # Extract the least significant bit of n
         bit = n & 1
 
