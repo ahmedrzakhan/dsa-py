@@ -1,12 +1,29 @@
 # https://leetcode.com/problems/counting-bits/
 
-# TC - O(N), SC - O(1)
+# TC - O(NLogN), SC - O(1)
 def countBits(n):
-    ans = [0] * (n + 1)
-    for i in range(1, n + 1):
-        # Use the fact that i & (i-1) removes the rightmost set bit
-        # Number of 1's in i = number of 1's in (i & (i-1)) + 1
-        ans[i] = ans[i & (i-1)] + 1
+    # Initialize empty list to store bit counts for each number from 0 to n
+    ans = []
+
+    # Iterate through each number from 0 to n (inclusive)
+    for i in range(n + 1):
+        # Initialize counter for 1-bits in current number
+        count = 0
+        # Copy current number to avoid modifying loop variable
+        num = i
+
+        # Count 1-bits by examining each bit position
+        while num:
+            # Check if least significant bit is 1 and add to count
+            # num & 1 returns 1 if LSB is 1, otherwise 0
+            count += num & 1
+            # Right shift by 1 bit to examine next bit position
+            # Equivalent to integer division by 2
+            num >>= 1
+
+        # Store the count of 1-bits for current number
+        ans.append(count)
+
     return ans
 
 # Example usage
