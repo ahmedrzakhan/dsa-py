@@ -28,7 +28,7 @@ def kClosest(points: list[list[int]], k: int) -> list[list[int]]:
 #         if len(max_heap) > k:
 #             heapq.heappop(max_heap)
 #     res = []
-#     while len(max_heap) >= 1:
+#     while len(res) < k:
 #         _, x, y = heapq.heappop(max_heap)
 #         res.append([x, y])
 #    return res
