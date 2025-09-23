@@ -7,16 +7,18 @@ def getSum(a: int, b: int) -> int:
     # Maximum positive value for a 32-bit signed integer
     max_int = 0x7FFFFFFF
 
-    # Perform addition using bitwise operations (no + operator)
     while b != 0:
-        # Calculate carry bits: where both a and b have 1s, shifted left by 1
-        carry = (a & b) << 1
+        # Step 1: Find all positions where both bits are 1 (these will create carries)
+        carry_positions = a & b
 
-        # XOR gives sum without carry, mask ensures 32-bit bounds
-        a = (a ^ b) & mask
+        # Step 2: Shift carries left by 1 (carry goes to next higher bit)
+        carry = carry_positions << 1
 
-        # Update b to be the carry for next iteration, mask ensures 32-bit bounds
-        b = carry & mask
+        # Step 3: Add without carry (XOR gives sum without carry)
+        a = (a ^ b) & mask  # Keep result in 32 bits
+
+        # Step 4: The carry becomes our new 'b' for next iteration
+        b = carry & mask    # Keep carry in 32 bits
 
     # Handle signed integer conversion:
     # If result fits in positive 32-bit range, return as-is
