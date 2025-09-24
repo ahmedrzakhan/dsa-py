@@ -21,7 +21,7 @@ def letterCombinations(digits):
 
     def backtrack(index, curr):
         # If we've processed all digits, add combination to result
-        if index == len(digits):
+        if len(curr) == len(digits): # index == len(digits)
             result.append(curr)
             return
 
