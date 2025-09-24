@@ -2,23 +2,16 @@
 
 # TC - N*2^N, SC - O(N)
 def partition(s):
-    """
-    Given a string s, partition s such that every substring of the partition is a palindrome.
-    Return all possible palindrome partitioning of s.
-
-    Args:
-        s (str): Input string
-
-    Returns:
-        List[List[str]]: All possible palindrome partitions
-    """
+    # Given a string s, partition s such that every substring of the partition is a palindrome.
+    # Return all possible palindrome partitioning of s.
+    # Args: s (str): Input string
+    # Returns: List[List[str]]: All possible palindrome partitions
     def is_palindrome(string):
         return string == string[::-1]
 
     def backtrack(start, curr_set):
         # Backtracking function to find all palindrome partitions
-        # Args:
-        #     start (int): Starting index for current substring
+        # Args: start (int): Starting index for current substring
         #     curr_set (List[str]): Current partition being built
         # Base case: if we've reached the end of string, add current partition to result
         if start == len(s):
