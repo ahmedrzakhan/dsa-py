@@ -19,8 +19,8 @@ def findOrder(numCourses, prerequisites):
             return True
 
         visiting.add(course) # Mark as being visited
-        for neighbor in adjList[course]:
-            if not dfs(neighbor):
+        for pre in adjList[course]:
+            if not dfs(pre):
                 return False  # Cycle detected in deeper recursion
 
         visiting.remove(course)  # Backtrack
