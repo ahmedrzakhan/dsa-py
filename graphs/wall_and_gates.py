@@ -15,7 +15,6 @@ def islandsAndTreasure(M: List[List[int]]) -> None:
         return None
 
     ROWS, COLS = len(M), len(M[0])
-    INF = 2147483647
 
     def dfs(R: int, C: int, distance: int) -> None:
         # Base cases
