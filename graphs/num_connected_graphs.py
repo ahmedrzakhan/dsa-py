@@ -2,36 +2,27 @@
 
 # TC - O(V+E), SC - O(V)
 def countComponents(n, edges):
-    # Initialize parent and rank arrays
-    parent = list(range(n))
-    rank = [1] * n  # Add rank array, initialized to 1
+    # Build adjacency list
+    adj_list = [[] for _ in range(n)]
+    for src, dst in edges:
+        adj_list[src].append(dst)
+        adj_list[dst].append(src)
 
-    def find(x):
-        # Find with path compression
-        if parent[x] != x:
-            parent[x] = find(parent[x])
-        return parent[x]
+    visited = set()
+    components = 0
 
-    def union(x, y):
-        # Union by rank
-        px, py = find(x), find(y)
-        if px == py:
-            return
-        if rank[px] > rank[py]:
-            px, py = py, px  # Swap so py has higher rank
-        parent[px] = py  # Always attach px (smaller) to py (larger)
-        rank[py] += rank[px]  # Update the larger tree's rank
+    def dfs(node):
+        visited.add(node)
+        for neighbor in adj_list[node]:
+            if neighbor not in visited:
+                dfs(neighbor)
 
-    # Process edges
-    for a, b in edges:
-        union(a, b)
-
-    # Count unique roots (components)
-    components = set()
     for i in range(n):
-        components.add(find(i))
+        if i not in visited:
+            dfs(i)
+            components += 1
 
-    return len(components)
+    return components
 
 # Test cases
 edges1 = [[0, 1], [0, 2]]
