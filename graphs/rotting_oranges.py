@@ -27,7 +27,7 @@ def orangesRotting(M):
         queueLength = len(queue)
 
         # Process all rotten oranges at current time
-        for i in range(queueLength):
+        for _ in range(queueLength):
             cell = queue.pop(0)  # Use popleft() for proper BFS
 
             for dir in directions:
