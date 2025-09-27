@@ -4,8 +4,8 @@
 def findOrder(numCourses, prerequisites):
     # Create adjacency list for the graph
     adjList = [[] for _ in range(numCourses)]
-    for course, prereq in prerequisites:
-        adjList[prereq].append(course)
+    for pre in prerequisites:
+        adjList[pre[1]].append(pre[0])
 
     # Track visited nodes and nodes currently being visited
     visited = set() # Tracks visited courses
