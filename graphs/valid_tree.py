@@ -2,38 +2,28 @@
 
 # TC - O(V+E), SC - O(V+E)
 def validTree(n: int, edges: list[list[int]]) -> bool:
-    # A valid tree must have exactly n-1 edges and be fully connected (no cycles)
+    # Quick check: valid tree must have exactly n-1 edges
     if len(edges) != n - 1:
         return False
 
+    # If we have n-1 edges and the graph is connected, it's a tree
     # Build adjacency list
-    adjList = [[] for _ in range(n)]
-    for src, dst in edges:
-        adjList[src].append(dst)
-        adjList[dst].append(src)
+    adj_list = [[] for _ in range(n)]
+    for u, v in edges:
+        adj_list[u].append(v)
+        adj_list[v].append(u)
 
-    # Use DFS to detect cycles and check connectivity
-    visited = {}
+    # DFS to check connectivity
+    visited = set()
 
-    def dfs(node: int, parent: int) -> bool:
-        visited[node] = True
-        for neighbor in adjList[node]:
-            # Skip the parent node to avoid false cycle detection
-            if neighbor == parent:
-                continue
-            # If neighbor is already visited, we found a cycle
-            if neighbor in visited:
-                return False
-            # Recursively check for cycles from the neighbor
-            if not dfs(neighbor, node):
-                return False
-        return True
+    def dfs(node):
+        visited.add(node)
+        for neighbor in adj_list[node]:
+            if neighbor not in visited:
+                dfs(neighbor)
 
-    # Start DFS from node 0
-    if not dfs(0, -1):
-        return False
-
-    # Check if all nodes are connected (visited)
+    # Start from any node (0) and see if we can reach all nodes
+    dfs(0)
     return len(visited) == n
 
 # Test cases
