@@ -3,8 +3,8 @@
 # TC - O(N), SC - O(N)
 def findRedundantConnection(edges):
     # Initialize parent array for Union-Find
-    parent = list(range(len(edges) + 1))
-
+    N = len(edges)
+    parent = [i for i in range(N+1)]
     def find(x):
         # Find the root of x with path compression
         if parent[x] != x:
