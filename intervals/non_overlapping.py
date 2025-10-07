@@ -1,24 +1,24 @@
 # https://leetcode.com/problems/non-overlapping-intervals/
 
 # TC - O(NLogN), SC - O(1)
-def eraseOverlapIntervals(intervals):
+def eraseOverlapIntervals(A):
     # Return minimum number of intervals to remove to make rest non-overlapping.
     # Strategy: Greedy approach - sort by end time and keep intervals that don't overlap.
     # This maximizes the number of intervals we keep, minimizing removals.
     # Time: O(n log n) for sorting
     # Space: O(1) excluding input
-    if not intervals:
+    if not A:
         return 0
 
     # Sort intervals by end time
-    intervals.sort(key=lambda x: x[1])
+    A.sort(key=lambda x: x[1])
 
     count = 0  # Number of intervals to remove
-    last_item = intervals[0][1]  # End time of last kept interval
+    last_item = A[0][1]  # End time of last kept interval
 
     # Start from second interval
-    for i in range(1, len(intervals)):
-        start, end = intervals[i]
+    for i in range(1, len(A)):
+        start, end = A[i]
 
         if start < last_item:  # Overlapping interval found
             count += 1
