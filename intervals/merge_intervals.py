@@ -1,28 +1,28 @@
 # https://leetcode.com/problems/merge-intervals/description/
 
 # TC - O(NLogN), SC - O(1)
-def merge(intervals):
+def merge(A):
     # Merge all overlapping intervals and return non-overlapping intervals.
     # Args: intervals: List of intervals where each interval is [start, end]
     # Returns: List of merged non-overlapping intervals
-    if not intervals:
+    if not A:
         return []
 
     # Sort intervals by start time
-    intervals.sort()
+    A.sort()
 
-    result = [intervals[0]]
+    result = [A[0]]
 
-    for current in intervals[1:]:
+    for curr in A[1:]:
         last_item = result[-1]
 
         # If current interval overlaps with the last merged interval
-        if current[0] <= last_item[1]:
+        if curr[0] <= last_item[1]:
             # Merge by updating the end time to the maximum of both ends
-            last_item[1] = max(last_item[1], current[1])
+            last_item[1] = max(last_item[1], curr[1])
         else:
             # No overlap, add current interval to result
-            result.append(current)
+            result.append(curr)
 
     return result
 
