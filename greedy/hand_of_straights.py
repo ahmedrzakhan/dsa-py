@@ -35,3 +35,7 @@ print(isNStraightHand(hand1, groupSize1))  # Output: True
 hand2 = [1, 2, 3, 4, 5]
 groupSize2 = 4
 print(isNStraightHand(hand2, groupSize2))  # Output: False
+
+hand2 = [1, 1, 2, 2, 3, 3]
+groupSize2 = 3
+print(isNStraightHand(hand2, groupSize2))  # Output: False
