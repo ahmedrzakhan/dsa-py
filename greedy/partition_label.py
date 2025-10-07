@@ -4,17 +4,17 @@
 def partitionLabels(s):
     # Create a map of characters to their last occurrence index
     last_occurrence = {}
-    for i, char in enumerate(s):
-        last_occurrence[char] = i
+    for i, ch in enumerate(s):
+        last_occurrence[ch] = i
 
     result = []
     start = 0
     end = 0
 
     # Iterate through the string
-    for i, char in enumerate(s):
+    for i, ch in enumerate(s):
         # Update the end to the maximum last occurrence of characters seen
-        end = max(end, last_occurrence[char])
+        end = max(end, last_occurrence[ch])
 
         # If current index equals end, we've found a partition
         if i == end:
