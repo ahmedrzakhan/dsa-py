@@ -8,18 +8,17 @@ class Interval(object):
         self.end = end
 
 # TC - O(NLogN), SC - O(N)
-def min_meeting_rooms(intervals):
-    if not intervals:
+def min_meeting_rooms(A):
+    if not A:
         return 0
 
-
     # Sort meetings by start time
-    intervals.sort(key=lambda x: x.start)
+    A.sort(key=lambda x: x.start)
 
     # Min heap to track end times of ongoing meetings
     min_heap = []
 
-    for interval in intervals:
+    for interval in A:
         # Remove meetings that have ended before current meeting starts
         while min_heap and min_heap[0] <= interval.start:
             heapq.heappop(min_heap)
