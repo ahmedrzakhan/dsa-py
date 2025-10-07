@@ -2,17 +2,17 @@
 
 # TC - O(N), SC - O(1)
 def jump(A):
-    res = 0
+    count = 0
     L, R = 0, 0
-
-    while R < len(A) - 1:
+    N = len(A)
+    while R < N - 1:
         farthest = 0
         for i in range(L, R + 1):
             farthest = max(farthest, i + A[i])
         L = R + 1
         R = farthest
-        res += 1
-    return res
+        count += 1
+    return count
 
 # Test cases
 # Test case 1
