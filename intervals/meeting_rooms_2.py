@@ -18,13 +18,13 @@ def min_meeting_rooms(A):
     # Min heap to track end times of ongoing meetings
     min_heap = []
 
-    for interval in A:
+    for curr in A:
         # Remove meetings that have ended before current meeting starts
-        while min_heap and min_heap[0] <= interval.start:
+        while min_heap and min_heap[0] <= curr.start:
             heapq.heappop(min_heap)
 
         # Add current meeting's end time
-        heapq.heappush(min_heap, interval.end)
+        heapq.heappush(min_heap, curr.end)
 
     return len(min_heap)
 
