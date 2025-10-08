@@ -17,8 +17,8 @@ def eraseOverlapIntervals(A):
     last_item = A[0][1]  # End time of last kept interval
 
     # Start from second interval
-    for i in range(1, len(A)):
-        start, end = A[i]
+    for curr in A[1:]:
+        start, end = curr
 
         if start < last_item:  # Overlapping interval found
             count += 1
