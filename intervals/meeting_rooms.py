@@ -6,21 +6,21 @@ class Interval(object):
         self.end = end
 
 # TC - O(NLogN), SC - O(1)
-def canAttendMeetings(intervals):
+def canAttendMeetings(A):
     # Determine if a person can attend all meetings without conflicts.
     # Args: intervals: List of Interval objects representing meeting times
     # Returns: bool: True if all meetings can be attended, False if there are conflicts
     # Handle edge cases
-    if not intervals or len(intervals) <= 1:
+    if not A or len(A) <= 1:
         return True
 
     # Sort intervals by start time
-    intervals.sort(key=lambda x: x.start)
+    A.sort(key=lambda x: x.start)
 
     # Check for overlaps between adjacent meetings
-    for i in range(1, len(intervals)):
+    for i in range(1, len(A)):
         # If previous meeting ends after current meeting starts, there's a conflict
-        if intervals[i-1].end > intervals[i].start:
+        if A[i].start < A[i-1].end:
             return False
 
     return True
