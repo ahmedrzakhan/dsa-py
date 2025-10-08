@@ -3,7 +3,7 @@
 # TC -O(N), SC - O(1)
 def canJump(A):
     max_reach = 0  # Tracks the furthest index we can reach
-
+    N = len(A)
     for i in range(len(A)):
         # If we can't reach the current index, return False
         if i > max_reach:
@@ -11,7 +11,7 @@ def canJump(A):
         # Update the furthest we can reach from current position
         max_reach = max(max_reach, i + A[i])
         # If we can reach or pass the last index, return True
-        if max_reach >= len(A) - 1:
+        if max_reach >= N - 1:
             return True
 
 # Test cases
